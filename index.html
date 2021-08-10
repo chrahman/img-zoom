@@ -1,438 +1,81 @@
-
-
 <!DOCTYPE html>
 <html>
-
 <head>
-  <link rel="stylesheet" href="https://chrahman.github.io/code-editor/css/codemirror.css">
-
-    <style>
-        body {
-            position: relative;
-            width: 90%;
-            margin: 20px auto;
-            border: solid #dee2e6;
-            padding: 20px;
-            border-radius: 3px;
-            transition: all 1s ease;
-            font-family: 'Arial';
-        }
-        /* Dark Theme */
-        body.darktheme {
-        	color:rgb(255, 255, 255);
-            background: rgb(40, 44, 52);
-        }
-        
-        body.darktheme input, body.darktheme textarea, body.darktheme .CodeMirror {
-        	background: rgb(40, 44, 52);
-            border: 2px solid #eee;
-            color:rgb(255, 255, 255);
-            transition: all 0.7s ease;
-        }
-        
-        body.darktheme .dark-btn {
-        	color:rgb(255, 255, 255);
-        }
-        
-        /* Dark Theme end */
-		
-        #content {
-            display: none;
-        }
-
-        #content1 {
-            width: 100%;
-            resize:none;
-        }
-        
-        input, textarea {
-        	transition: all 1s ease;
-        }
-
-        input:focus,
-        textarea:focus, .CodeMirror-lines:focus {
-            border-color: blue !important;
-            outline: none;
-            transition: all 1s ease;
-        }
-        
-        .dark-btn {
-        	color:black;
-            transition: all 1s ease;
-            float:right;
-            margin-top:-10px;
-        }
-        
-        input[type="text"] {
-            font-size: 16px;
-            padding: 5px 10px;
-            border: 1px solid rgb(118, 118, 118);
-        }
-        
-        @media screen and (max-width:480px) {
-        	body {
-            	border:none;
-                padding:7px;
-                font-family: 'Arial';
-            }
-            input[type="text"] {
-                height: 30px;
-            	border-radius: 30px;
-            	width:-webkit-fill-available;
-                margin-top:5px;
-            }
-            .dark-btn {
-            	margin-top: 15px;
-            }
-        }
-        .CodeMirror {
-        	font-size:13px;
-            border: 1px solid rgb(118, 118, 118);
-            margin-bottom: 5px;            
-        }
-        .cm-s-default .cm-comment {
-            color: #a50;
-        }
-        .cm-s-default .cm-tag, .cm-s-default .cm-bracket {
-            color: #170;
-        }
-        .cm-s-default .cm-attribute {
-            color: #00c;
-        }
-        .cm-s-default .cm-string {
-            color: #a11;
-        }
-        .CodeMirror pre:nth-child(1), .CodeMirror pre:last-child {
-            display: none;
-        }
-        
-    </style>
 </head>
 
 <body>
-<script src="https://chrahman.github.io/code-editor/js/codemirror.js"></script>
-  <script src="https://chrahman.github.io/code-editor/js/codemirror_jsx.js"></script>
-    <label>Book name</label>
-    <input type="text" id="namepost" placeholder="Like cs201" autocomplete="off">
+<script rel='preload' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+    
+    </script>
 
-<a class="dark-btn" href="javascript:void(0);" onclick="retheme()"  title="Change Theme">
-<svg baseProfile="tiny" fill="currentColor" height="35px" version="1.2" viewBox="0 0 24 24" width="35px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <g id="Layer_1">
-            <g>
-              <path d="M12,4c-4.418,0-8,3.582-8,8s3.582,8,8,8s8-3.582,8-8S16.418,4,12,4z M12,18c-3.314,0-6-2.686-6-6s2.686-6,6-6s6,2.686,6,6    S15.314,18,12,18z"></path>
-              <path d="M12,7v10c2.757,0,5-2.243,5-5S14.757,7,12,7z"></path>
-            </g>
-          </g>
-        </svg></a>
-    <br><br>
-    <input type="radio" id="img1" name="img">
-    <label> Assignment 1</label><br>
-    <input type="radio" id="img2" name="img">
-    <label> Assignment 2</label><br>
-    <input type="radio" id="img3" name="img">
-    <label> Assignment 3</label>
-    <br><br>
-    <input type="radio" id="gdb1" name="img">
-    <label> GDB 1</label><br>
-    <input type="radio" id="gdb2" name="img">
-    <label> GDB 2</label>
-    <br><br>
-
-    <label> Download Link</label>
-    <input type="text" id="downlink" placeholder="https://mediafire.com/" autocomplete="off">
-    <br><br>
-
-
-    <div id="content">
-<!-- Starts post -->
-<div class="separator" style="clear: both; text-align: center;">
-  <br />
-</div>
-<div class="separator" style="clear: both; text-align: center;">
-  <a id="imghref" href="https://1.bp.blogspot.com/-1Pbp1dbJgf0/YO6lO81icVI/AAAAAAAACxQ/3QJxpy2VRrwmSHvPjDi6YjWssm78HWH1QCLcBGAsYHQ/s684/CS401%2BAssignment%2B3%2BSpring%2B2021.webp" style="margin-left: 1em; margin-right: 1em;">
-    <img id="imgsrc" alt="CS401 Assignment 3 Spring 2021" border="0" data-original-height="318" data-original-width="684" src="https://1.bp.blogspot.com/-1Pbp1dbJgf0/YO6lO81icVI/AAAAAAAACxQ/3QJxpy2VRrwmSHvPjDi6YjWssm78HWH1QCLcBGAsYHQ/s16000/CS401%2BAssignment%2B3%2BSpring%2B2021.webp" title="CS401 Assignment 3 Spring 2021" />
-  </a>
-</div>
-<br />
-<div class="separator" style="clear: both; text-align: center;">
-  <br />
-</div>
-<h2 style="clear: both; text-align: left;">CS401 Assignment 3 Solution Spring 2021</h2>
-<div>In this Post, I have CS401 Assignment 3 Solution Spring 2021.&nbsp; <span face="Poppins, sans-serif" style="background-color: white; font-size: 15px;">Download CS401 <a id="cs_gd_no" href="https://www.vudaily.com/2021/07/it430-assignment-3-solution-spring-2021.html" target="_blank"> Assignment Solution</a> File From Here. Download Moaaz past papers and Waqar's past papers from our website. You can Download all <a id="cs_gd_notes" href="https://www.vudaily.com/search/label/Assignment-Solution-2021?&amp;max-results=5" rel="nofollow" target="_blank">assignment solutions</a> from our website. </span>
-</div>
-<div>
-  <br />
-</div>
-<div class="hadipapers" style="width: 97%;">
-  <div class="hadipapersh1">
-    <h1 style="color: white;">Join Our Social Media Groups</h1>
-  </div>
-  <div class="hadipapersp hadics">
-    <p>
-      <a href="https://web.facebook.com/groups/3405642262994944" style="transition: all 0.5s ease 0s;">
-        <i class="fa fa-facebook" style="background: blueviolet; color: white; font-size: 23px; margin-right: 20px; padding: 13px;"></i>Join Facebook Group
-      </a>
-    </p>
-    <p>
-      <a href="https://chat.whatsapp.com/EHu76WHLA0g89IRnKhRs3E" style="transition: all 0.5s ease 0s;">
-        <i class="fa fa-whatsapp" style="background: blueviolet; color: white; font-size: 23px; margin-right: 20px; padding: 10px;"></i>Join Whatsapp Group
-      </a>
-    </p>
-    <p>
-      <a href="https://chat.whatsapp.com/IAjIe74NlsA6ImpAcFrZCG" style="transition: all 0.5s ease 0s;">
-        <i class="fa fa-whatsapp" style="background: blueviolet; color: white; font-size: 23px; margin-right: 20px; padding: 10px;"></i>Join 2 Whatsapp Group
-      </a>
-    </p>
-    <p>
-      <a href="https://t.me/vudailygroup" style="transition: all 0.5s ease 0s;">
-        <i class="fa fa-telegram" style="background: blueviolet; color: white; font-size: 23px; margin-right: 20px; padding: 10px;"></i>Join Telegram Group 
-      </a>
-    </p>
-  </div>
-</div>
-<div class="button__holder" style="margin-top: 25px; text-align: center;">
-  <a id="downlinkput" href="https://www.mediafire.com/file/uv1ohdwqgfp3683/cs401+Assignmnt+3.docx/file" rel="nofollow" target="_blank">
-    <button class="plus">
-      <i class="fa fa-download" style="color: white;"></i>Download </button>
-  </a>
-</div>
-<!--Posts ad-->
-<ins class="adsbygoogle" data-ad-client="ca-pub-7297866338073995" data-ad-format="fluid" data-ad-layout="in-article" data-ad-slot="3456488220" style="display: block; text-align: center;"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<div>
-  <p style="color: #333333; font-family: &quot;noto serif&quot;, serif; font-size: 18px; line-height: 30px; margin-bottom: 20px; margin-top: 20px;"></p>
-  <blockquote>Don't Copy-paste The Same Answer Please Make Some Changes Within The Solution File. You Have Got To Form Your Solution File By Yourself Because Everyone Cannot Submit Same Solution File Kindly Make Some Changes Otherwise Are Mark Zero. So Please Make Some Changes Within The Solution File.</blockquote>
-  <p></p>
-  <p style="color: #333333; font-family: &quot;noto serif&quot;, serif; font-size: 18px; line-height: 30px; margin-bottom: 20px; margin-top: 20px;"></p>
-</div>
-<div>We Are Here To Supply Latest Virtual University Solutions. Assignment Solutions, GDB Solution, Quiz Solution Viva Solution Midterm Past Papers, and Final term Past Papers. <br />
-</div>
-<div>
-  <br />
-</div>
-<div>
-  <div>
-    <p>CS401 Assignment 3 Solution 2021</p>
-    <p>CS401 Assignment 3 Solution 2021 download</p>
-    <p>CS401 Assignment 3 spring 2021</p>
-  </div>
+<div class="post-body entry-content" id="post-body">
+<h2 style="text-align: left;">Vivo Upcoming New SmartPhone Pair V20 &amp; V20 SE</h2><div><a href="https://1.bp.blogspot.com/-ksFYgPLgVjQ/X2YUgWJXgxI/AAAAAAAADsA/q3TS9PBCFNolgI96R1omR2H3YA5NOAauACLcBGAsYHQ/s1280/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25281%2529.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img   alt="Vivo new Upcoming Smart Phones V20 and  V20SE" border="0" data-original-height="720" data-original-width="1280" src="https://1.bp.blogspot.com/-ksFYgPLgVjQ/X2YUgWJXgxI/AAAAAAAADsA/q3TS9PBCFNolgI96R1omR2H3YA5NOAauACLcBGAsYHQ/s16000/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25281%2529.jpeg" title="Vivo new Upcoming Smart Phones V20 and  V20SE"></a></div><div><br></div><div>Vivo set to launch 2 new smartphones in the global market. The two smartphones names are the Vivo V20 and Vivo V20 SE. They have been in the news for weeks, and the specifications were already leaked. We also have seen the renders of the V20 devices before, although they hinted at a pill-shaped notch. The new render hints at a tear-drop notch. Let’s check out the Vivo V20 series design below!</div><div class="separator" style="clear: both; text-align: center;"><br></div><br><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-wgti6xCl3Rk/X2YUgXEdyZI/AAAAAAAADsI/vQn_1hVWhYI14Kx6uqXoE48_RFXhHjzLQCLcBGAsYHQ/s1280/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25282%2529.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img alt="Vivo new Upcoming Smart Phones V20 and  V20SE" border="0" data-original-height="1280" data-original-width="1279" src="https://1.bp.blogspot.com/-wgti6xCl3Rk/X2YUgXEdyZI/AAAAAAAADsI/vQn_1hVWhYI14Kx6uqXoE48_RFXhHjzLQCLcBGAsYHQ/s16000/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25282%2529.jpeg" title="Vivo new Upcoming Smart Phones V20 and  V20SE"></a></div><br><div class="separator" style="clear: both; text-align: center;"><br></div><br><div class="separator" style="clear: both; text-align: center;"><br></div><br><div><br></div><div><br></div><div><blockquote>Also, Read&nbsp;&nbsp;<a href="https://www.vudaily.com/2020/09/samsung-galaxy-tab-active-3-full-specs.html">Samsung Galaxy Tab Active 3 full specs Leaked&nbsp;</a></blockquote><p>The slim and delicate Vivo V20 is the best-in-class design that will be an unforgettable lightweight hold. All beautiful colors in one smartphone.</p><p><a href="https://1.bp.blogspot.com/--EVVwwrOWUQ/X2YUgcbtrfI/AAAAAAAADsE/LZBAvnjjobYuN-P__l8uX8_198VowGIGQCLcBGAsYHQ/s1080/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25283%2529.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img alt="vivo v20" border="0" data-original-height="360" data-original-width="1080" src="https://1.bp.blogspot.com/--EVVwwrOWUQ/X2YUgcbtrfI/AAAAAAAADsE/LZBAvnjjobYuN-P__l8uX8_198VowGIGQCLcBGAsYHQ/s16000/WhatsApp%2BImage%2B2020-09-19%2Bat%2B7.20.11%2BPM%2B%25283%2529.jpeg" title="vivo v20"></a></p><h2 style="text-align: left;">&nbsp;V20 SE Specification:-</h2><div>It’s the new VivoV20SE An incredibly thin, light, and well-designed smartphone that we have ever made.&nbsp;</div><p>32MP Selfie shooter in Front Camera. The back Camera consists of TrippleCamera Setup. Triple Camera: 48 MP + 8 MP +2 MP, LED Flash.&nbsp; The V20 SE comes in a more somber Gravity Black and Oxygen Blue color palette.&nbsp; It’s a generic three-camera setup arranged inside a lengthened bump. The ‘multi-purpose’ 8MP wide-angle camera works with a 2MP depth sensor and a 48MP standard camera.&nbsp;</p><p><br></p><a href="https://www.vudaily.com/2020/09/samsung-galaxy-tab-active-3-full-specs.html"></a></div>
 </div>
 <style>
-  .button__holder {
-    position: relative;
+.post-body img {
+	cursor:pointer;
+}
+.overlay_1 {
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .plus {
-    position: relative;
-    z-index: 1;
-    width: 181px;
-    height: 46px;
-    cursor: pointer;
-    color: white;
-    background: #ed1c5b;
-    border: none;
-    transition: box-shadow 400ms cubic-bezier(.2, 0, .7, 1), transform 200ms cubic-bezier(.2, 0, .7, 1);
-    background-image: linear-gradient(45deg, #1151b7 0, #c300be 100%);
-    text-align: center;
-    font-size: 21px;
-    text-transform: uppercase;
-    outline: none;
-  }
-
-  .what {
-    height: 60px;
-  }
-
-  .plus:hover {
-    box-shadow: 0 0 1px 3px rgba(225, 225, 255, 1), 0 0 1px 8px rgba(133, 127, 220, 1), 0 0 1px 14px rgba(182, 179, 213, 1)
-  }
-
-  .hadipapers {
-    width: 90%;
-    margin-left: 2%;
-    margin-bottom: 5px;
-    border: 1px solid black;
-    float: left;
-    height: auto;
-  }
-
-  .hadipapersh1 {
-    height: 60px;
-    background: blueviolet;
-    color: white;
-    padding-top: 2px;
-    padding-bottom: 10px;
-    border-bottom: 2px dashed #f1f1f1;
-    width: 100%;
-  }
-
-  .hadipapersh1 h1 {
-    text-align: center;
-    padding-bottom: 18px;
-  }
-
-  .hadipapersp {
-    width: 100%;
-  }
-
-  .hadics p {
-    font-size: 19px;
-    border-left: 4px solid transparent;
-    transition: 0.5s ease;
-    padding: 6px;
-    margin: 20px;
-    border-bottom: 1px solid black;
-  }
-
-  .hadipapersp a:hover {
-    color: blueviolet;
-    margin-left: 6px;
-    font-weight: bold;
-  }
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;display:flex;align-items:center;justify-content:center;
+}
+.overlay_img {
+    width: 75%;height: auto;max-height: 100%;overflow: hidden;
+}
+.overlay_img img {
+	width:100%;
+    height:auto;
+    max-height: 100%;
+}
+.close_ov {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: red;
+    color: #ffff;
+    padding: 5px 9px;
+    font-style: normal;
+    cursor:pointer;
+    border-radius:20px;
+}
+@media screen and (max-width:660px) {
+	.overlay_img {
+        width: 95%;height: auto;overflow: hidden;
+    }
+}
 </style>
-<!-- End post -->
-    </div>
-    <textarea rows="22" id="content1" placeholder="Genrate post and click on Copy" readonly></textarea>
-    <button type="button" onclick="callme()">Generate</button>
-    <button type="button" onclick="copy()">Copy</button>
+<div class="overlay_1"></div>
 
-    <script>
-        var downlink = document.getElementById("downlink");
-        var downlinkput = document.getElementById("downlinkput");
-        var imgsrc = document.getElementById("imgsrc");
-        var imghref = document.getElementById("imghref");
 
-        var img1 = document.getElementById("img1");
-        var img2 = document.getElementById("img2");
-        var img3 = document.getElementById("img3");
-        var gdb1 = document.getElementById("gdb1");
-        var gdb2 = document.getElementById("gdb2");
+<script>
+$(".post-body img").parent().removeAttr("href");
+document.querySelectorAll('.post-body img').forEach(item => {
+  item.addEventListener('click', event => {
+    var ovimg = $("<div class='overlay_img'><i title='Close Show Case' class='close_ov' onclick='remoeov()'>✖</i></div>");
+    $(".overlay_1").css({visibility:"visible", opacity:"1"});
+    var imgzoom = $(item).clone();
+    imgzoom.attr({id:"NZoomImg", dataNZoomscale:"2.5"});
+    ovimg.prepend(imgzoom);
+    $(".overlay_1").prepend(ovimg);
+    // Zoom image library
+    let t=document.getElementById("NZoomImg"),e=t.getAttribute("dataNZoomscale")<=0?1:t.getAttribute("dataNZoomscale"),s=t.clientWidth,o=t.clientHeight;$("#NZoomImg").replaceWith('<div id="NZoomContainer">'+t.outerHTML+"</div>");let i=$("#NZoomContainer"),n=$("#NZoomImg");i.css("width",s+"px"),i.css("height",o+"px"),i.mousemove(function(t){let e=$(this).offset(),i=(t.pageX-e.left)/s*100<=100?(t.pageX-e.left)/s*100:100,c=(t.pageY-e.top)/o*100<=100?(t.pageY-e.top)/o*100:100;n.css("transform-origin",i+"% "+c+"%")}),i.mouseenter(function(){n.css("cursor","crosshair"),n.css("width",s+"px"),n.css("height",o+"px"),n.css("transition","0.2s"),n.css("transform","scale("+e+")")}).mouseleave(function(){n.css("transition","0.2s"),n.css("transform","scale(1)")})
+  });
+});
+function remoeov() {
+  $(".overlay_1").css({visibility:"hidden", opacity:"0"});
+  $(".overlay_img").remove();
+};
 
-        function myFunction() {
-            // replace download link
-            document.getElementById("downlinkput").href = downlink.value;
-            // Change you can download
-            if (gdb1.checked || gdb2.checked) {
-            	document.getElementById("cs_gd_notes").href = "/search/label/GDB-Solution-2021?&amp;max-results=5";
-                document.getElementById("cs_gd_notes").innerHTML = "GDB Solutions";
-                document.getElementById("cs_gd_no").innerHTML = "GDB Solution";
-                
-            }
-            else {
-            	document.getElementById("cs_gd_notes").href = "/search/label/Assignment-Solution-2021?&amp;max-results=5";
-                document.getElementById("cs_gd_notes").innerHTML = "Assignment Solutions";
-                document.getElementById("cs_gd_no").innerHTML = "Assignment Solution";
-            }
-
-            // check and change img
-            if (img1.checked) {
-                imgsrc.src = "https://1.bp.blogspot.com/-2Uk3koOkwVE/YIyR1X9KbII/AAAAAAAACtA/q8XVJz0XSWAinJ5G5VVofkN8Jc3SJgE5wCLcBGAsYHQ/s16000/Assignment%2B1%2BSolution%2BSpring%2B2021.webp";
-                imghref.href = "https://1.bp.blogspot.com/-2Uk3koOkwVE/YIyR1X9KbII/AAAAAAAACtA/q8XVJz0XSWAinJ5G5VVofkN8Jc3SJgE5wCLcBGAsYHQ/s16000/Assignment%2B1%2BSolution%2BSpring%2B2021.webp";
-            }
-            if (img2.checked) {
-                imgsrc.src = "https://1.bp.blogspot.com/-WuH1hnWGD1o/YPQMtyp4HyI/AAAAAAAACxc/8SH9XAxUpHcStf679cJughIIZChprp1KQCLcBGAsYHQ/s16000/CS401%2BAssignment%2B2%2BSpring%2B2021.webp";
-                imghref.href = "https://1.bp.blogspot.com/-WuH1hnWGD1o/YPQMtyp4HyI/AAAAAAAACxc/8SH9XAxUpHcStf679cJughIIZChprp1KQCLcBGAsYHQ/s16000/CS401%2BAssignment%2B2%2BSpring%2B2021.webp";
-            }
-            if (img3.checked) {
-                imgsrc.src = "https://1.bp.blogspot.com/-1Pbp1dbJgf0/YO6lO81icVI/AAAAAAAACxQ/3QJxpy2VRrwmSHvPjDi6YjWssm78HWH1QCLcBGAsYHQ/s16000/CS401%2BAssignment%2B3%2BSpring%2B2021.webp";
-                imghref.href = "https://1.bp.blogspot.com/-1Pbp1dbJgf0/YO6lO81icVI/AAAAAAAACxQ/3QJxpy2VRrwmSHvPjDi6YjWssm78HWH1QCLcBGAsYHQ/s16000/CS401%2BAssignment%2B3%2BSpring%2B2021.webp";
-            }
-            if (gdb1.checked) {
-                imgsrc.src = "https://1.bp.blogspot.com/-zm7O4oPR8FI/YJvWXyeSIZI/AAAAAAAACuo/XmcwG0fNK-UYgj26WJbITWMJi9Xv3UMWgCLcBGAsYHQ/s16000/CS408%2BGDB%2B1%2BSolution%2BSpring%2B2021.webp";
-                imghref.href = "https://1.bp.blogspot.com/-zm7O4oPR8FI/YJvWXyeSIZI/AAAAAAAACuo/XmcwG0fNK-UYgj26WJbITWMJi9Xv3UMWgCLcBGAsYHQ/s16000/CS408%2BGDB%2B1%2BSolution%2BSpring%2B2021.webp";
-            }
-            if (gdb2.checked) {
-                imgsrc.src = "https://1.bp.blogspot.com/-lGew74YAwns/YQosrgSAEzI/AAAAAAAACyA/rlIP4lc3VfIPBKJpBH68qaaJOv9D_20rACLcBGAsYHQ/s16000/CS401%2BGDB%2B1%2BSolution%2BSpring%2B2021.webp";
-                imghref.href = "https://1.bp.blogspot.com/-lGew74YAwns/YQosrgSAEzI/AAAAAAAACyA/rlIP4lc3VfIPBKJpBH68qaaJOv9D_20rACLcBGAsYHQ/s16000/CS401%2BGDB%2B1%2BSolution%2BSpring%2B2021.webp";
-            }
-
-            // put content to textarea
-            document.getElementById("content1").value = document.getElementById("content").innerHTML;
-
-            // replace name
-            var replacecontent = document.getElementById("content1").value;
-            document.getElementById("content1").value = replacecontent.replaceAll("CS401", document.getElementById("namepost").value);
-            var newreplacecontent = document.getElementById("content1").value;
-            if (img1.checked) {
-                document.getElementById("content1").value = newreplacecontent.replaceAll("Assignment 3", "Assignment 1");
-            }
-            if (img2.checked) {
-                document.getElementById("content1").value = newreplacecontent.replaceAll("Assignment 3", "Assignment 2");
-            }
-            if (img3.checked) {
-                document.getElementById("content1").value = newreplacecontent.replaceAll("Assignment 3", "Assignment 3");
-            }
-            if (gdb1.checked) {
-                document.getElementById("content1").value = newreplacecontent.replaceAll("Assignment 3", "GDB 1");
-            }
-            if (gdb2.checked) {
-                document.getElementById("content1").value = newreplacecontent.replaceAll("Assignment 3", "GDB 2");
-            }
-            
-             if (document.querySelector(".CodeMirror")) {
-             	document.querySelector(".CodeMirror").remove();
-             }
-            function colorcoding() {
-             window.editor = CodeMirror.fromTextArea(document.getElementById("content1"), {               
-               mode: "text/html",
-               htmlMode: true,
-               lineWrapping: false,
-               smartIndent: true,
-               autoComplete: true,
-               readOnly: false,
-               addModeClass: true,
-             });
-             //  window.editor.on("change", function () {window.editor.save();});
-           }
-           colorcoding();
-        }
-
-        function copy() {
-        	if (document.querySelector(".CodeMirror")) {
-               editor.execCommand('selectAll');
-               editor.focus();
-               document.execCommand('copy');
-            }
-            else {
-            	alert("Please Generate your post first");
-            }
-        }
-
-        function callme() {
-            myFunction();
-        }
-        
-        // dark theme starts here
-        
-   function retheme() {
-     var cc = document.body.className;
-     if (cc.indexOf("darktheme") > -1) {
-       document.body.className = cc.replace("darktheme", "");
-       if (opener) { opener.document.body.className = cc.replace("darktheme", ""); }
-       localStorage.setItem("preferredmode", "light");
-     } else {
-       document.body.className += " darktheme";
-       if (opener) { opener.document.body.className += "darktheme"; }
-       localStorage.setItem("preferredmode", "dark");
-     }
-   }
-   (
-     function setThemeMode() {
-       var x = localStorage.getItem("preferredmode");
-       if (x == "dark") {
-         document.body.className += "darktheme";
-       }
-     })();
-    </script>
-    
+</script>
 </body>
 
 </html>
